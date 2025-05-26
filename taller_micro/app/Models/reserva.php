@@ -4,7 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class reserva extends Model
+class Reserva extends Model
 {
-    //
+    protected $table = "reservas";
+    public $timestamps = false;
 }

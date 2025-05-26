@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Vehiculo;
 use Illuminate\Http\Request;
+
 
 class vechiculoController extends Controller
 {
@@ -11,7 +13,9 @@ class vechiculoController extends Controller
      */
     public function index()
     {
-        //
+         $rows = Vehiculo::all();
+        return response()
+        ->json(['data'=>$rows], 200);
     }
 
     /**
@@ -19,7 +23,18 @@ class vechiculoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $data = $request->all(); //traer todos los elementos
+        $newVehiculo = new Vehiculo();
+        $newVehiculo->marca=$data['marcaa']; //  crear un registro
+        $newVehiculo->modelo=$data['model'];
+        $newVehiculo->anio=$data['year'];
+        $newVehiculo->categoria=$data['category'];
+        $newVehiculo->estado=$data['state'];
+        $newVehiculo->created_at=$data['create_at'];
+        $newVehiculo->updated_at=$data['update_at'];
+        $newVehiculo->save();    //guardar 
+
+        return response()->json(['data' => 'Datos guardados'], 201); // retorna un mesaje datos guardados
     }
 
     /**
@@ -27,7 +42,12 @@ class vechiculoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $row = Vehiculo::find($id); //busca el id que el usurio selecciona para consultarlo
+        if(empty($row)){
+            return response()->json(['data'=>'no existe'], 404);
+
+        }
+        return response()->json(['data' => $row], 200);
     }
 
     /**
@@ -35,7 +55,24 @@ class vechiculoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+         $row = Vehiculo::find($id); //busca el id que el usurio selecciona para consultarlo
+        if(empty($row)){
+            return response()->json(['data'=>'no existe'], 404);
+
+        }
+
+         
+        $data = $request->all();
+        $row->marca=$data['marcaa'];
+        $row->modelo=$data['model'];
+        $row->anio=$data['year'];
+        $row->categoria=$data['category'];
+        $row->estado=$data['state'];
+        $row->created_at=$data['create_at'];
+        $row->updated_at=$data['update_at'];
+     
+        $row->save();
+        return response()->json(['data' => 'Datos guardados'], 200);
     }
 
     /**
@@ -43,6 +80,12 @@ class vechiculoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+         $row = Vehiculo::find($id); //busca el id que el usurio selecciona para consultarlo
+            if(empty($row)){
+                return response()->json(['data'=>'no existe'], 404);
+    
+            }
+            $row->delete();
+            return response()->json(['data' => 'Datos eliminados'], 200);
     }
 }
