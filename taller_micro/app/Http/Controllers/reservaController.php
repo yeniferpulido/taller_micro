@@ -24,14 +24,14 @@ class reservaController extends Controller
     {
         $data = $request->all(); //traer todos los elementos
         $newReserva = new Reserva(); //crea un objeto de la clasewReservas
-        $newReserva->cliente_id=$data['clien_id']; //  crear un registro
-        $newReserva->vehiculo_id=$data['vehicu_id'];
-        $newReserva->fecha_inicio=$data['fecha_ini'];
+        $newReserva->cliente_id=$data['cliente_id']; //  crear un registro
+        $newReserva->vehiculo_id=$data['vehiculo_id'];
+        $newReserva->fecha_inicio=$data['fecha_inicio'];
         $newReserva->fecha_fin=$data['fecha_fin'];
-        $newReserva->estado=$data['state'];
-        $newReserva->created_at=$data['create_at'];
-        $newReserva->updated_at=$data['update_at'];
-        $newReserva->save();    //guardar 
+        $newReserva->estado=$data['estado'];
+        //$newReserva->created_at=$data['created_at'];
+        //$newReserva->updated_at=$data['updated_at'];
+        $newReserva->save();    //guardar
 
         return response()->json(['data' => 'Datos guardados'], 201); // retorna un mesaje datos guardados
     }
@@ -62,13 +62,13 @@ class reservaController extends Controller
         
 
         $data = $request->all();
-        $row->cliente_id=$data['clien_id'];
-        $row->vehiculo_id=$data['vehicu_id'];
-        $row->fecha_inicio=$data['fecha_ini'];
+        $row->cliente_id=$data['cliente_id'];
+        $row->vehiculo_id=$data['vehiculo_id'];
+        $row->fecha_inicio=$data['fecha_inicio'];
         $row->fecha_fin=$data['fecha_fin'];
-        $row->estado=$data['state'];
-        $row->created_at=$data['create_at'];
-        $row->updated_at=$data['update_at'];
+        $row->estado=$data['estado'];
+        //$row->created_at=$data['created_at'];
+        //$row->updated_at=$data['updated_at'];
 
         $row->save();
         return response()->json(['data' => 'Datos guardados'], 200);

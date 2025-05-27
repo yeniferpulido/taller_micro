@@ -23,16 +23,16 @@ class vechiculoController extends Controller
      */
     public function store(Request $request)
     {
-         $data = $request->all(); //traer todos los elementos
+        $data = $request->all(); //traer todos los elementos
         $newVehiculo = new Vehiculo();
-        $newVehiculo->marca=$data['marcaa']; //  crear un registro
-        $newVehiculo->modelo=$data['model'];
-        $newVehiculo->anio=$data['year'];
-        $newVehiculo->categoria=$data['category'];
-        $newVehiculo->estado=$data['state'];
-        $newVehiculo->created_at=$data['create_at'];
-        $newVehiculo->updated_at=$data['update_at'];
-        $newVehiculo->save();    //guardar 
+        $newVehiculo->marca=$data['marca']; //  crear un registro
+        $newVehiculo->modelo=$data['modelo'];
+        $newVehiculo->anio=$data['anio'];
+        $newVehiculo->categoria=$data['categoria'];
+        $newVehiculo->estado=$data['estado'];
+        //$newVehiculo->created_at=$data['created_at'];
+        //$newVehiculo->updated_at=$data['updated_at'];
+        $newVehiculo->save();    //guardar
 
         return response()->json(['data' => 'Datos guardados'], 201); // retorna un mesaje datos guardados
     }
@@ -63,14 +63,14 @@ class vechiculoController extends Controller
 
          
         $data = $request->all();
-        $row->marca=$data['marcaa'];
-        $row->modelo=$data['model'];
-        $row->anio=$data['year'];
-        $row->categoria=$data['category'];
-        $row->estado=$data['state'];
-        $row->created_at=$data['create_at'];
-        $row->updated_at=$data['update_at'];
-     
+        $row->marca=$data['marca'];
+        $row->modelo=$data['modelo'];
+        $row->anio=$data['anio'];
+        $row->categoria=$data['categoria'];
+        $row->estado=$data['estado'];
+        //$row->created_at=$data['created_at'];
+        //$row->updated_at=$data['updated_at'];
+
         $row->save();
         return response()->json(['data' => 'Datos guardados'], 200);
     }

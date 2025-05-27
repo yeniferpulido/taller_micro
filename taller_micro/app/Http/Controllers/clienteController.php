@@ -24,12 +24,12 @@ class clienteController extends Controller
     {
         $data = $request->all(); 
         $newCliente = new Cliente(); 
-        $newCliente->nombre=$data['name']; 
-        $newCliente->telefono=$data['phone'];
-        $newCliente->correo=$data['email'];
-        $newCliente->numero_licencia=$data['num_lice'];
-        $newCliente->created_at=$data['crea_at'];
-        $newCliente->updated_at=$data['upda_at'];
+        $newCliente->nombre=$data['nombre']; 
+        $newCliente->telefono=$data['telefono'];
+        $newCliente->correo=$data['correo'];
+        $newCliente->numero_licencia=$data['numero_licencia'];
+        //$newCliente->created_at=$data['created_at'];
+        //$newCliente->updated_at=$data['updated_at'];
 
         $newCliente->save();    //guardar 
 
@@ -60,12 +60,12 @@ class clienteController extends Controller
 
     }
         $data = $request->all();
-        $row->nombre = $data['name'];
-        $row->telefono = $data['phone'];
-        $row->email = $data['email'];
-        $row->numero_licencia = $data['num_lice'];
-        $row->created_at = $data['crea_at'];
-        $row->updated_at = $data['upda_at'];
+        $row->nombre = $data['nombre'];
+        $row->telefono = $data['telefono'];
+        $row->correo = $data['correo'];
+        $row->numero_licencia = $data['numero_licencia'];
+        //$row->created_at = $data['created_at'];
+        //$row->updated_at = $data['updated_at'];
         $row->save();
         return response()->json(['data' => 'Datos guardados'], 200);
     }
