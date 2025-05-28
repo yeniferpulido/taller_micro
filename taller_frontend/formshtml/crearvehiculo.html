@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Agregar Vehículo</title>
+</head>
+<body>
+  <h1>Agregar vehículo</h1>
+
+  <form id="formVehiculocrear" name="crearvehiculoForm">
+    <div>
+      <label>Ingrese la marca del vehículo</label>
+      <input type="text" name="marca" required>
+    </div>
+    <br>
+
+    <div>
+      <label>Ingrese el modelo del vehículo</label>
+      <input type="text" name="modelo" required>
+    </div>
+    <br>
+
+    <div>
+      <label>Ingrese el año del vehículo</label>
+      <input type="number" name="anio" required>
+    </div>
+    <br>
+
+    <div>
+      <label>Ingrese la placa del vehículo</label>
+      <input type="text" name="categoria" required>
+    </div>
+    <!-- Se debe en el form de actualizar pedir primero placa del vehiculo, que se guarda en categoria -->
+    <br>
+
+    <div>
+      <label for="estado">Ingrese el estado del vehículo</label>
+      <select id="estado" name="estado" required>
+        <option value="">-- Selecciona una opción --</option>
+        <option value="disponible">Disponible</option>
+        <option value="alquilado">Alquilado</option>
+        <option value="mantenimiento">Mantenimiento</option>
+      </select>
+    </div>
+    <br>
+
+    <button type="submit">Registrar</button>
+  </form>
+
+ 
+
+  <div>
+    <a href="../index.html">Volver</a>
+  </div>
+
+
+
+   <script src="../js/crearvehiculo.js"></script>
+</body>
+</html>
+
