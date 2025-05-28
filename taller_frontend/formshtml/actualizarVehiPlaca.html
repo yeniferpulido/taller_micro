@@ -1,35 +1,67 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Agregar Vehículo</title>
+  <meta charset="UTF-8" />
+  <title>Actualizar Vehículo</title>
 </head>
 <body>
-  <h1>Actualizar vehículo</h1>
 
-  <form id="formVehiculoactu" name="actuvehiculoForm">
+  <h1>Buscar vehículo por placa</h1>
 
+  <form id="buscarVehiculoForm" name="buscarVehiculoForm">
     <div>
-      <label>Ingrese la placa del vehículo</label>
-      <input type="text" name="categoria" required>
+      <label for="categoriaBuscar">Ingrese la placa del vehículo:</label>
+      <input type="text" id="categoriaBuscar" name="categoria" required />
     </div>
-    <!-- Se debe en el form de actualizar pedir primero placa del vehiculo, que se guarda en categoria -->
-    <br>
-
-   
-
-    <button type="submit">Registrar</button>
+    <br />
+    <button type="submit">Buscar</button>
   </form>
 
- 
+  <hr />
 
-  <div>
-    <a href="../index.html">Volver</a>
+  <div id="formActualizarContainer" style="display:none;">
+    <h2>Actualizar vehículo</h2>
+    <form id="formVehiculoactu" name="actuvehiculoForm">
+
+      <div>
+        <label for="marca">Marca:</label>
+        <input type="text" id="marca" name="marca" required />
+      </div>
+
+      <div>
+        <label for="modelo">Modelo:</label>
+        <input type="text" id="modelo" name="modelo" required />
+      </div>
+
+      <div>
+        <label for="anio">Año:</label>
+        <input type="number" id="anio" name="anio" required />
+      </div>
+
+      <div>
+      <label for="estado">Estado:</label>
+      <select id="estado" name="estado" required disabled>
+        <option value="disponible">Disponible</option>
+        <option value="alquilado">Alquilado</option>
+        <option value="mantenimiento">Mantenimiento</option>
+      </select>
+    </div>
+
+
+
+      <div>
+        <label for="categoria">Placa (Categoría):</label>
+        <input type="text" id="categoria" name="categoria" readonly />
+      </div>
+
+      <br />
+      <button type="submit">Actualizar</button>
+    </form>
   </div>
 
+  <br />
+  <a href="vehiculoMenu.html">Volver</a>
 
-
-   <script src="../js/actualizarvehiculo.js"></script>
+  <script src="../js/actualizarvehiculo.js"></script>
 </body>
 </html>
-

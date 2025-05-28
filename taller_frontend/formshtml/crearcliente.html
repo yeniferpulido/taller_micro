@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Agregar Cliente</title>
+</head>
+<body>
+  <h1>Agregar cliente</h1>
+
+  <form id="formClientecrear" name="crearclienteForm">
+    <div>
+      <label>Ingrese su nombre:</label>
+      <input type="text" id="nombre" name="nombre" required>
+    </div>
+
+    <div>
+      <label>Ingrese su teléfono:</label>
+      <input type="number" id="telefono" name="telefono" required>
+    </div>
+
+    <div>
+      <label>Ingrese su correo:</label>
+      <input type="email" id="correo" name="correo" required>
+    </div>
+
+    <div>
+      <label>Ingrese su número de licencia:</label>
+      <input type="number" id="numero_licencia" name="numero_licencia" required>
+    </div>
+
+    <button type="submit">Registrar</button>
+  </form>
+
+  <a href="clienteMenu.html">Volver</a>
+
+  <script src="../js/crearcliente.js"></script>
+</body>
+</html>

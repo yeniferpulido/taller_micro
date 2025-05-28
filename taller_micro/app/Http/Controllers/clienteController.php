@@ -22,18 +22,28 @@ class clienteController extends Controller
      */
     public function store(Request $request)
     {
+        $rows = Cliente::all();
         $data = $request->all(); 
-        $newCliente = new Cliente(); 
-        $newCliente->nombre=$data['nombre']; 
-        $newCliente->telefono=$data['telefono'];
-        $newCliente->correo=$data['correo'];
-        $newCliente->numero_licencia=$data['numero_licencia'];
-        //$newCliente->created_at=$data['created_at'];
-        //$newCliente->updated_at=$data['updated_at'];
+        $clientenuevo = true;
+        foreach ($rows as $row) {
+         if ($row->numero_licencia == $data['numero_licencia']) {
+             $clientenuevo = false;
+             break; 
+           }
+        }
+    if ($clientenuevo) {
+         $newVehiculo = new Cliente();
+         $newVehiculo->nombre = $data['nombre'];
+         $newVehiculo->telefono = $data['telefono'];
+         $newVehiculo->correo = $data['correo'];
+         $newVehiculo->numero_licencia = $data['numero_licencia'];
+         $newVehiculo->save();
 
-        $newCliente->save();    //guardar 
-
-        return response()->json(['data' => 'Datos guardados'], 201); // retorna un mesaje datos guardados
+         return response()->json(['data' => 'Datos guardados'], 201);
+     } else {
+         return response()->json(['data' => 'Error: ya hay un usuario con ese numero de licencia'], 409);
+    }
+    
     }
 
     /**
@@ -52,38 +62,39 @@ class clienteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, String $numero_licencia)
     {
-         $row = Cliente::find($id); //busca el id que el usurio selecciona para consultarlo
-        if(empty($row)){
+         $cliente = Cliente::whereRaw('LOWER(numero_licencia) = ?', [strtolower($numero_licencia)])->first(); //busca el id que el usurio selecciona para consultarlo
+       
+         if(!$cliente){
             return response()->json(['data'=>'no existe'], 404);
+        }
 
-    }
         $data = $request->all();
-        $row->nombre = $data['nombre'];
-        $row->telefono = $data['telefono'];
-        $row->correo = $data['correo'];
-        $row->numero_licencia = $data['numero_licencia'];
-        //$row->created_at = $data['created_at'];
-        //$row->updated_at = $data['updated_at'];
-        $row->save();
-        return response()->json(['data' => 'Datos guardados'], 200);
+        $cliente->nombre = $data['nombre'];
+        $cliente->telefono = $data['telefono'];
+        $cliente->correo = $data['correo'];
+        $cliente->numero_licencia = $data['numero_licencia'];
+        $cliente->save();
+        return response()->json(['data' => 'Cliente actualizado'], 200);
     }
 
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $numero_licencia)
     {
-            $row = Cliente::find($id); //busca el id que el usurio selecciona para consultarlo
-            if(empty($row)){
-                return response()->json(['data'=>'no existe'], 404);
-    
-            }
-            $row->delete();
-            return response()->json(['data' => 'Datos eliminados'], 200);
+        $row = Cliente::where('numero_licencia', $numero_licencia)->first();
+
+        if (!$row) {
+            return response()->json(['data' => 'no existe'], 404);
+        }
+
+        $row->delete();
+        return response()->json(['data' => 'Datos eliminados'], 200);
     }
+
 
 
 

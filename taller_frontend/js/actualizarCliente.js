@@ -1,50 +1,48 @@
-const buscarForm = document.getElementById('buscarVehiculoForm');
+const buscarForm = document.getElementById('buscarClienteForm');
 const formActualizarContainer = document.getElementById('formActualizarContainer');
-const formActualizar = document.getElementById('formVehiculoactu');
+const formActualizar = document.getElementById('formClienteactu');
 
 buscarForm.addEventListener('submit', async e => {
   e.preventDefault();
 
   const formData = new FormData(buscarForm);
   const data = Object.fromEntries(formData);
-  const categoriaBuscada = data.categoria.trim().toLowerCase();
+  const clienteBuscar = data.cliente.trim().toLowerCase();
 
-  if (!categoriaBuscada) {
-    alert("Por favor, ingresa una placa válida.");
+  if (!clienteBuscar) {
+    alert("Por favor, ingresa un Numero de licencia valido.");
     return;
   }
 
   try {
-
-    const res = await fetch(`http://127.0.0.1:8000/api/vehiculos`, {
+    const res = await fetch(`http://127.0.0.1:8000/api/clientes`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     });
 
     if (!res.ok) {
-      alert("Error al obtener vehículos.");
+      alert("Error al obtener el cliente.");
       formActualizarContainer.style.display = "none";
       return;
     }
 
     const result = await res.json();
-    const vehiculos = result.data;
+    const clientes = result.data;
 
-    const vehiculo = vehiculos.find(v => v.categoria.toLowerCase() === categoriaBuscada);
+    const cliente = clientes.find(v => v.numero_licencia.toLowerCase() === clienteBuscar);
 
-    if (!vehiculo) {
-      alert("Vehículo no encontrado. Por favor, verifica la placa.");
+    if (!cliente) {
+      alert("Cliente no encontrado. Por favor, verifica el numero de licencia.");
       formActualizarContainer.style.display = "none";
       return;
     }
 
     formActualizarContainer.style.display = "block";
 
-    formActualizar.marca.value = vehiculo.marca || '';
-    formActualizar.modelo.value = vehiculo.modelo || '';
-    formActualizar.anio.value = vehiculo.anio || '';
-    formActualizar.estado.value = vehiculo.estado || '';
-    formActualizar.categoria.value = vehiculo.categoria || '';
+    formActualizar.nombre.value = cliente.nombre || '';
+    formActualizar.telefono.value = cliente.telefono || '';
+    formActualizar.correo.value = cliente.correo || '';
+    formActualizar.numero_licencia.value = cliente.numero_licencia || '';
 
   } catch (error) {
     console.error("Error en la búsqueda:", error);
@@ -58,32 +56,31 @@ formActualizar.addEventListener('submit', async e => {
 
   const formData = new FormData(formActualizar);
   const data = Object.fromEntries(formData);
-  const categoria = data.categoria.trim().toLowerCase();
 
   try {
-    const res = await fetch(`http://127.0.0.1:8000/api/vehiculos/${categoria}`, {
+    const res = await fetch(`http://127.0.0.1:8000/api/clientes/${data.numero_licencia}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        marca: data.marca,
-        modelo: data.modelo,
-        anio: data.anio,
-        estado: data.estado
+        nombre: data.nombre,
+        telefono: data.telefono,
+        correo: data.correo,
+        numero_licencia: data.numero_licencia
       }),
     });
 
     const result = await res.json();
 
     if (res.ok) {
-      alert(result.data || "Vehículo actualizado correctamente.");
+      alert(result.data || "Cliente actualizado correctamente.");
       formActualizarContainer.style.display = "none";
       buscarForm.reset();
       formActualizar.reset();
     } else {
-      alert(result.data || "Error al actualizar vehículo.");
+      alert(result.data || "Error al actualizar cliente.");
     }
   } catch (error) {
-    console.error("Error al actualizar vehículo:", error);
+    console.error("Error al actualizar cliente:", error);
     alert("Error de comunicación con el servidor.");
   }
 });

@@ -48,18 +48,19 @@ class vehiculoController extends Controller
         return response()->json(['data' => 'Error: la placa ya existe'], 409);
     }
 }
-    /**
-     * Display the specified resource.
-     */
-    // public function show(string $id)
-    // {
-    //     $row = Vehiculo::find($id); //busca el id que el usurio selecciona para consultarlo
-    //     if(empty($row)){
-    //         return response()->json(['data'=>'no existe'], 404);
 
-    //     }
-    //     return response()->json(['data' => $row], 200);
-    // }
+    public function show(string $categoria)
+    {
+        $categoria = strtolower($categoria);
+        $vehiculo = Vehiculo::whereRaw('LOWER(categoria) = ?', [$categoria])->first();
+
+        if (!$vehiculo) {
+            return response()->json(['data' => 'No existe'], 404);
+        }
+
+        return response()->json(['data' => $vehiculo], 200);
+    }
+
 
     public function showbyestado()
     {
@@ -87,15 +88,36 @@ class vehiculoController extends Controller
     }
 
     $data = $request->all();
-    $vehiculo->marca = $data['marca'];
-    $vehiculo->modelo = $data['modelo'];
-    $vehiculo->anio = $data['anio'];
-    
-    $vehiculo->estado = $data['estado'];
-    $vehiculo->save();
 
-    return response()->json(['data' => 'Vehículo actualizado'], 200);
+    // Solo actualizar el estado si viene ese campo
+    if (isset($data['estado']) && count($data) === 1) {
+        $vehiculo->estado = $data['estado'];
+        $vehiculo->save();
+        return response()->json(['data' => 'Estado actualizado correctamente'], 200);
+    }
+
+    // Si vienen más campos, actualiza normalmente
+    if (isset($data['marca'])) {
+        $vehiculo->marca = $data['marca'];
+    }
+
+    if (isset($data['modelo'])) {
+        $vehiculo->modelo = $data['modelo'];
+    }
+
+    if (isset($data['anio'])) {
+        $vehiculo->anio = $data['anio'];
+    }
+
+    if (isset($data['estado'])) {
+        $vehiculo->estado = $data['estado'];
+    }
+
+    $vehiculo->save();
+    return response()->json(['data' => 'Vehículo actualizado correctamente'], 200);
 }
+
+
 
 
     /**
@@ -107,7 +129,7 @@ class vehiculoController extends Controller
     $vehiculo = Vehiculo::whereRaw('LOWER(categoria) = ?', [strtolower($categoria)])->first();
 
     if (!$vehiculo) {
-        return response()->json(['data' => 'No existe'], 404);
+        return response()->json(['data' => 'No existe vehiculo con esa placa'], 404);
     }
 
     $vehiculo->delete();

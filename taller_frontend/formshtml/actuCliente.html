@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Actualizar Cliente</title>
+</head>
+<body>
+
+  <h1>Buscar cliente por número de licencia</h1>
+
+  <form id="buscarClienteForm" name="buscarClienteForm">
+    <div>
+      <label for="clienteBuscar">Ingrese el número de licencia del cliente:</label>
+      <input type="text" id="clienteBuscar" name="cliente" required />
+    </div>
+    <br />
+    <button type="submit">Buscar</button>
+  </form>
+
+  <hr/>
+
+ <div id="formActualizarContainer" style="display:none;">
+  <h2>Actualizar cliente</h2>
+  <form id="formClienteactu" name="actuclienteForm">
+
+    <div>
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" name="nombre" required />
+    </div>
+
+    <div>
+      <label for="telefono">Teléfono:</label>
+      <input type="number" id="telefono" name="telefono" required />
+    </div>
+
+    <div>
+      <label for="correo">Correo:</label>
+      <input type="email" id="correo" name="correo" required />
+    </div>
+
+    <div>
+      <label for="numero_licencia">Número de licencia:</label>
+      <input type="text" id="numero_licencia" name="numero_licencia" required readonly />
+    </div>
+
+    <button type="submit">Actualizar</button>
+  </form>
+</div>
+
+
+  <br />
+  <a href="clienteMenu.html">Volver</a>
+
+  <script src="../js/actualizarCliente.js"></script>
+</body>
+</html>
