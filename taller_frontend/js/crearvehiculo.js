@@ -1,26 +1,38 @@
 const form = document.forms['crearvehiculoForm'];
 
-document.getElementById('formVehiculocrear').addEventListener('submit', async e => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData);
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.forms['crearvehiculoForm'];
 
-    const res = await fetch("http://localhost:8000/api/vehiculos", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            "marca": form['marca'].value,
-            "modelo": form['modelo'].value,
-            "anio": form['anio'].value,
-            "categoria": form['categoria'].value,
-            "estado": form['estado'].value,
-            //fecha: fechaHoy()
-        })
-    });
+    document.getElementById('formVehiculocrear').addEventListener('submit', async e => {
+        e.preventDefault();
+
+        
+            const res = await fetch("http://localhost:8000/api/vehiculos", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    marca: form['marca'].value,
+                    modelo: form['modelo'].value,
+                    anio: form['anio'].value,
+                    categoria: form['categoria'].value,
+                    estado: form['estado'].value,
+                })
+            });
 
     const result = await res.json();
-    alert(result.message || "Vehículo registrado");
+    if (res.status === 409) {
+        alert(result.data);  
+    } else if (res.ok) {
+        alert(result.data || "Vehículo registrado correctamente.");
+        form.reset();
+    } else {
+        alert("Error inesperado");
+        console.error(result);
+    }   
+    });
 });
+
+
 
 const fechaHoy = () => {
     const hoy = new Date();
@@ -30,5 +42,5 @@ const fechaHoy = () => {
     return `${anio}-${mes}-${dia}`;
 }
 
-localStorage.setItem('idReserva', 1);
-const idReserva = localStorage.getItem('idReserva');
+// localStorage.setItem('idReserva', 1);
+// const idReserva = localStorage.getItem('idReserva');

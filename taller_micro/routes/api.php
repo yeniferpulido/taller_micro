@@ -12,7 +12,7 @@ Route::controller(vehiculoController::class)->group(function(){
     Route::get('vehiculos/disponible', 'showbyestado'); //vervehiculosdisponibles-muestra los vehiculos disponibles
     //Route::get('vehiculos/{id}', 'show'); //mostrarvehiculoporid-obtener el los datos de la reservas a parrtir del id
     Route::put('vehiculos/{categoria}', 'update'); // actualizarvehiculoporplaca-buscar la parsona para modificar a partir del id
-    Route::delete('vehiculos/{id}', 'destroy'); // borra datos, buscandolo con el id
+    Route::delete('vehiculos/{categoria}', 'destroy'); // borra datos, buscandolo con el id
 });
 
 

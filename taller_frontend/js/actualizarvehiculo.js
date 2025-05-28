@@ -5,7 +5,7 @@ document.getElementById('formVehiculoactu').addEventListener('submit', async e =
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
 
-    const res = await fetch("http://localhost:8000/api/vehiculos", {
+    const res = await fetch("http://localhost:8000/api/vehiculos/"+$categoria, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
 

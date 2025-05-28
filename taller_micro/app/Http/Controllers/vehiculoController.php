@@ -43,15 +43,11 @@ class vehiculoController extends Controller
         $newVehiculo->estado = $data['estado'];
         $newVehiculo->save();
 
-        return response()->json(['data' => 'Datos guardados'], 400);
+        return response()->json(['data' => 'Datos guardados'], 201);
     } else {
-        return response()->json(['data' => 'Error: la placa ya existe'], 401);
+        return response()->json(['data' => 'Error: la placa ya existe'], 409);
     }
 }
-
-
-    
-
     /**
      * Display the specified resource.
      */
@@ -105,14 +101,17 @@ class vehiculoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-         $row = Vehiculo::find($id); //busca el id que el usurio selecciona para consultarlo
-            if(empty($row)){
-                return response()->json(['data'=>'no existe'], 404);
-    
-            }
-            $row->delete();
-            return response()->json(['data' => 'Datos eliminados'], 200);
+    public function destroy(string $categoria)
+{
+    // Búsqueda sin distinguir mayúsculas/minúsculas
+    $vehiculo = Vehiculo::whereRaw('LOWER(categoria) = ?', [strtolower($categoria)])->first();
+
+    if (!$vehiculo) {
+        return response()->json(['data' => 'No existe'], 404);
     }
+
+    $vehiculo->delete();
+    return response()->json(['data' => 'Vehículo eliminado'], 200);
+}
+
 }
