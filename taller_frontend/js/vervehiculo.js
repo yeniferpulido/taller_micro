@@ -40,6 +40,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         <td>${v.modelo || ''}</td>
         <td>${v.anio || ''}</td>
         <td>${v.estado || ''}</td>
+        
       `;
 
       tbodyVehiculos.appendChild(fila);
