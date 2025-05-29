@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cliente;
 use App\Models\Reserva;
+use App\Models\Vehiculo;
 use Illuminate\Http\Request;
 
 class reservaController extends Controller
@@ -13,6 +15,10 @@ class reservaController extends Controller
     public function index()
     {
          $rows = Reserva::all();
+         foreach($rows as $row){
+            $row['nombreVehiculo'] = Vehiculo::find($row->vehiculo_id)->categoria;
+            $row['nombreCliente'] = Cliente::find($row->cliente_id)->nombre;
+         }
         return response()
         ->json(['data'=>$rows], 200);
     }

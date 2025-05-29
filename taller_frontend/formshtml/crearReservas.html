@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Agregar Vehículo</title>
+</head>
+<body>
+  <h1>Agregar vehículo</h1>
+
+  <form id="formReservas" name="ReservasForm">
+    <div>
+      <label>Seleccione el cliente que realizará la reserva</label>
+        <select id="cliente" name="cliente_id" required>
+        <option value="">-- Selecciona un cliente --</option>
+        </select>
+    </div>
+    <br>
+
+    <div>
+      <label>Seleccione el vehículo disponible</label>
+        <select id="vehiculo" name="vehiculo_id" required>
+        <option value="">-- Selecciona un vehiculo --</option>
+        </select>
+    </div>
+    <br>
+
+    <input type="hidden" name="categoria" id="categoria">
+
+    <div>
+      <label>Ingrese la fecha de inicio de la reserva</label>
+      <input type="date" id="fecha_inicio" name="fecha_inicio" required>
+    </div>
+    <br>
+
+    <div>
+      <label>Ingrese la fecha de fin de la reserva</label>
+      <input type="date" id="fecha_fin" name="fecha_fin" required>
+    </div>
+    <br>
+
+
+    <button type="submit">Registrar</button>
+  </form>
+
+ 
+
+  <div>
+    <a href="../index.html">Volver</a>
+  </div>
+
+
+
+   <script src="../js/tablascliente.js"></script>
+   <script src="../js/tablasvehiculos.js"></script>
+    <script src="../js/crearreserva.js"></script>
+   
+</body>
+</html>
+
