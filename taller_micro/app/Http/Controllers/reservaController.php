@@ -6,22 +6,43 @@ use App\Models\Cliente;
 use App\Models\Reserva;
 use App\Models\Vehiculo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+
 
 class reservaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-         $rows = Reserva::all();
-         foreach($rows as $row){
-            $row['nombreVehiculo'] = Vehiculo::find($row->vehiculo_id)->categoria;
-            $row['nombreCliente'] = Cliente::find($row->cliente_id)->nombre;
-         }
-        return response()
-        ->json(['data'=>$rows], 200);
+
+public function index()
+{
+    $hoy = Carbon::now()->toDateString(); // Fecha actual
+    $rows = Reserva::all(); // Traer todas las reservas
+
+    foreach ($rows as $row) {
+        // Verificar y actualizar el estado automáticamente
+        if ($hoy == $row->fecha_inicio) {
+            $row->estado = 'activa';
+        } elseif ($hoy > $row->fecha_fin) {
+            $row->estado = 'finalizada';
+        } else {
+            $row->estado = 'pendiente'; // o 'programada', según tus reglas
+        }
+
+        $row->save(); // Guardar los cambios en la base de datos
+
+        // Agregar información extra para la respuesta
+        $vehiculo = Vehiculo::find($row->vehiculo_id);
+        $cliente = Cliente::find($row->cliente_id);
+
+        $row['nombreVehiculo'] = $vehiculo ? $vehiculo->categoria : '';
+        $row['nombreCliente'] = $cliente ? $cliente->nombre : '';
     }
+
+    return response()->json(['data' => $rows], 200);
+}
+
 
     /**
      * Store a newly created resource in storage.
@@ -94,4 +115,26 @@ class reservaController extends Controller
             $row->delete();
             return response()->json(['data' => 'Datos eliminados'], 200);
     }
+
+
+    public function disponiblesPorFecha(Request $request)
+{
+    $fecha = $request->query('fecha'); // Obtener la fecha desde la URL (?fecha=...)
+
+    if (!$fecha) {
+        return response()->json(['message' => 'Fecha requerida'], 400);
+    }
+
+    // Vehículos ya reservados ese día
+    $reservados = Reserva::whereDate('fecha_inicio', '<=', $fecha)
+        ->whereDate('fecha_fin', '>=', $fecha)
+        ->pluck('vehiculo_id');
+
+    // Filtrar los que están disponibles y no reservados
+    $vehiculos = Vehiculo::where('estado', 'disponible')
+        ->whereNotIn('id', $reservados)
+        ->get();
+
+    return response()->json(['data' => $vehiculos], 200);
+}
 }

@@ -18,6 +18,7 @@ Route::controller(vehiculoController::class)->group(function(){
 
 Route::controller(reservaController::class)->group(function(){
     Route::get('reservas', 'index'); //obtiene los datos de la tabla reservass
+    Route::get('/vehiculos/disponibles-por-fecha', 'disponiblesPorFecha');
     Route::post('reservas', 'store'); //configurando la url 
     Route::get('reservas/{id}', 'show'); // obtener el los datos de la reservas a parrtir del id
     Route::put('reservas/{id}', 'update'); // buscar la parsona para modificar a partir del id

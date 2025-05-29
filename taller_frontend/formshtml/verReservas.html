@@ -2,29 +2,51 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Reservas Disponibles</title>
+  <title>Actualizar Cliente</title>
 </head>
 <body>
 
-  <h1>Lista de reservas activas</h1>
+    <h2>Consultar disponibilidad por fecha</h2>
+    <form id="formFecha">
+    <input type="date" name="fecha" required />
+    <button type="submit">Consultar</button>
+    </form>
 
-  <table id="tablaReservas" hidden cellpadding="5" cellspacing="0">
-    <thead>
-      <tr>
-        <th>Cliente</th>
-        <th>Vehiculo</th>
-        <th>Fecha Inicio</th>
-        <th>Fecha Fin</th>
-        <th>Estado</th>
-      </tr>
-    </thead>
-    <tbody id="tbodyReservas">
-    </tbody>
-  </table>
 
-  <a href="vehiculoMenu.html">Volver</a>
+  <hr/>
 
-  <script src="../js/verreservasactivas.js"></script>
+ <div id="formActualizarContainer" style="display:none;">
+  <h2>Actualizar cliente</h2>
+  <form id="formClienteactu" name="actuclienteForm">
 
+    <div>
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" name="nombre" required />
+    </div>
+
+    <div>
+      <label for="telefono">Teléfono:</label>
+      <input type="number" id="telefono" name="telefono" required />
+    </div>
+
+    <div>
+      <label for="correo">Correo:</label>
+      <input type="email" id="correo" name="correo" required />
+    </div>
+
+    <div>
+      <label for="numero_licencia">Número de licencia:</label>
+      <input type="text" id="numero_licencia" name="numero_licencia" required readonly />
+    </div>
+
+    <button type="submit">Actualizar</button>
+  </form>
+</div>
+
+
+  <br />
+  <a href="clienteMenu.html">Volver</a>
+
+  <script src="../js/vervehiculo.js"></script>
 </body>
 </html>

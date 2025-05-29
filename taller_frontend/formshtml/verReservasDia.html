@@ -2,19 +2,27 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Reservas Disponibles</title>
+  <title>Consultar Vehículos por Fecha</title>
 </head>
 <body>
 
-  <h1>Lista de reservas activas</h1>
+  <h1>Consulta de vehículos disponibles</h1>
+
+  <form id="formFecha">
+    <label for="fecha">Selecciona una fecha:</label>
+    <input type="date" id="fecha" name="fecha" required />
+    <button type="submit">Consultar</button>
+  </form>
+
+  <br>
 
   <table id="tablaVehiculos" hidden cellpadding="5" cellspacing="0">
     <thead>
       <tr>
-        <th>Cliente</th>
-        <th>Vehiculo</th>
-        <th>Fecha Inicio</th>
-        <th>Fecha Fin</th>
+        <th>Categoría (Placa)</th>
+        <th>Marca</th>
+        <th>Modelo</th>
+        <th>Año</th>
         <th>Estado</th>
       </tr>
     </thead>
@@ -22,9 +30,13 @@
     </tbody>
   </table>
 
-  <a href="vehiculoMenu.html">Volver</a>
+  <div>
+    <a href="ReservasMenu.html">Volver</a>
+  </div>
 
-  <script src="../js/vervehiculo.js"></script>
+  <script src="../js/seguimientoreservas.js"></script>
+
+
 
 </body>
 </html>

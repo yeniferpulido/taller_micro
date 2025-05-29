@@ -136,4 +136,6 @@ class vehiculoController extends Controller
     return response()->json(['data' => 'Vehículo eliminado'], 200);
 }
 
+
+
 }
