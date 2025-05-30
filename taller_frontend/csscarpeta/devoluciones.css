@@ -1,0 +1,103 @@
+/* Fondo general */
+body {
+  background: linear-gradient(#0f2027);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+}
+
+/* Contenedor principal */
+.container {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 40px 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 900px;
+  text-align: center;
+}
+
+/* Título */
+h1 {
+  color: #fff;
+  margin-bottom: 25px;
+}
+
+/* Tabla de vehículos */
+.tabla-vehiculos {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  overflow: hidden;
+  color: #fff;
+}
+
+.tabla-vehiculos th,
+.tabla-vehiculos td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tabla-vehiculos th {
+  background-color: rgba(255, 255, 255, 0.1);
+  font-weight: bold;
+}
+
+.tabla-vehiculos tr:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Contenedor del botón Volver */
+.volver-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.volver {
+  text-decoration: none;
+  background-color: #f0f0f0;
+  color: #1e3c72;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+.volver:hover {
+  background-color: #56a3e2;
+  transform: scale(1.05);
+}
+/* Aplica a todos los botones dentro de la tabla */
+.tabla-vehiculos button {
+  background-color:  #1e3c72;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.tabla-vehiculos button:hover {
+  background-color: #335dac;
+    transform: scale(1.05);
+}
+
+/* Estilo para el select de estado */
+.tabla-vehiculos select {
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}

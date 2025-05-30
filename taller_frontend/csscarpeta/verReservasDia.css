@@ -1,0 +1,190 @@
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+/* Fondo general */
+body {
+  background: linear-gradient(#0f2027);
+  margin: 0;
+  padding: 20px 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  color: #fff;
+}
+
+h1 {
+  color: #fff;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+/* Formulario general */
+form {
+   background-color: rgba(255, 255, 255, 0.05);
+  max-width: 400px;
+  margin: 0 auto 30px auto;
+  padding: 25px 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Div que envuelve label + input */
+form div {
+  margin-bottom: 18px;
+}
+button.Consultar {
+  margin-top: 10px;
+  padding: 12px;
+  background-color: #9ea8af;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+button.Consultar:hover {
+  background-color: #b3bbc2;
+}
+
+#tablaVehiculos {
+  width: 90%;
+  max-width: 900px;
+  margin: 0 auto 30px auto;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+#tablaVehiculos th, #tablaVehiculos td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+#tablaVehiculos thead {
+  background-color: #0a2e53;
+  color: white;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+#tablaVehiculos tbody tr:nth-child(even) {
+  background-color: #f7f9fc;
+}
+
+#tablaVehiculos tbody tr:hover {
+  background-color: #e6f0ff;
+}
+#tablaVehiculos th {
+    color: #f3e3e3;
+}
+
+
+
+/* Etiquetas */
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #d9dfe6;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="date"] {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: 1.8px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus {
+  border-color: #2980b9;
+  outline: none;
+}
+
+/* Botón */
+button[type="submit"] {
+  width: 100%;
+  padding: 12px 0;
+  background-color: #2980b9;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #1c5980;
+}
+
+/* Línea horizontal */
+hr {
+  margin: 30px auto;
+  max-width: 400px;
+  border: 0;
+  border-top: 1px solid #ddd;
+}
+
+/* Link volver */
+a {
+  display: block;
+  text-align: center;
+  font-size: 1rem;
+  color: #2980b9;
+  text-decoration: none;
+  margin-top: 20px;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #1c5980;
+}
+
+.volver {
+  text-decoration: none;
+  background-color: #f0f0f0;
+  color: #1e3c72;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.volver:hover {
+  background-color: #56a3e2;
+  transform: scale(1.05);
+}
+
+/* Contenedor formulario actualizar cliente */
+#formActualizarContainer {
+  max-width: 400px;
+  margin: 0 auto 40px auto;
+}
+
+

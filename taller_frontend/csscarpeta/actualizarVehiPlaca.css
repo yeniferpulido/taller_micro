@@ -1,0 +1,129 @@
+/* Fondo y centrado general */
+body {
+
+  background: linear-gradient( #0f2027);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Contenedor centrado */
+.container {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 40px 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 500px;
+}
+
+/* Títulos */
+h1, h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+/* Campos */
+form div {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #f5f5f5;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+input:focus,
+select:focus {
+  border-color: #007bff;
+}
+
+/* Buscares */
+.Buscar {
+  margin-top: 10px;
+  padding: 12px;
+  width: 100%;
+  background-color: #083f79;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.Buscar:hover {
+  background-color: #0056b3;
+}
+
+.actualizar {
+  margin-top: 10px;
+  padding: 12px;
+  width: 100%;
+  background-color: #083f79;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.actualizar:hover {
+  background-color: #0056b3;
+}
+
+
+/* Línea separadora */
+hr {
+  margin: 30px 0;
+  border: 0;
+  height: 1px;
+  background: #ccc;
+  opacity: 0.3;
+}
+
+/* Enlace volver */
+.volver-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.volver {
+  text-decoration: none;
+  background-color: #f0f0f0;
+  color: #1e3c72;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+.volver:hover {
+  background-color: #56a3e2;
+  transform: scale(1.05);
+}
+
+/* Ocultar inicialmente el segundo formulario */
+#formActualizarContainer {
+  display: none;
+}

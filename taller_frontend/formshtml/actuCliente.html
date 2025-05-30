@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <title>Actualizar Cliente</title>
+      <link rel="stylesheet" href="../csscarpeta/actuCliente.css">
 </head>
 <body>
+  <div class="container">
 
   <h1>Buscar cliente por número de licencia</h1>
 
@@ -14,7 +16,7 @@
       <input type="text" id="clienteBuscar" name="cliente" required />
     </div>
     <br />
-    <button type="submit">Buscar</button>
+    <button type="submit" class="Buscar">Buscar</button>
   </form>
 
   <hr/>
@@ -43,13 +45,18 @@
       <input type="text" id="numero_licencia" name="numero_licencia" required readonly />
     </div>
 
-    <button type="submit">Actualizar</button>
+    <button type="submit" class="actualizar">Actualizar</button>
   </form>
 </div>
 
 
   <br />
-  <a href="clienteMenu.html">Volver</a>
+      <div class="volver-container">
+  <a href="clienteMenu.html" class="volver">Volver</a>
+  </div>
+
+   </div>
+  
 
   <script src="../js/actualizarCliente.js"></script>
 </body>

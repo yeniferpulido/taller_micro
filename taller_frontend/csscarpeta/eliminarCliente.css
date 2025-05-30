@@ -1,0 +1,88 @@
+body {
+  background: linear-gradient( #0f2027);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Contenedor principal */
+.container {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 40px 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Título */
+h1 {
+  color: #fff;
+  margin-bottom: 25px;
+}
+
+/* Formulario */
+form div {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+label {
+  font-weight: bold;
+  color: #fff;
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  outline: none;
+}
+
+.Eliminar {
+  margin-top: 10px;
+  padding: 12px;
+  width: 100%;
+  background-color: #a82020;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.Eliminar:hover {
+  background-color: #7c0f0f;
+}
+
+/* Contenedor del botón Volver */
+.volver-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.volver {
+  text-decoration: none;
+  background-color: #f0f0f0;
+  color: #1e3c72;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+.volver:hover {
+  background-color: #56a3e2;
+  transform: scale(1.05);
+}

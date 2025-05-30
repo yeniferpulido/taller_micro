@@ -1,0 +1,81 @@
+body {
+  background: linear-gradient(#0f2027, #203a43, #2c5364);
+  margin: 0;
+  padding: 20px 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  color: #fff;
+}
+
+h1 {
+  color: #fff;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+table {
+  width: 90%;
+  max-width: 900px;
+  border-collapse: collapse;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  color: #fff;
+}
+
+button.Consultar {
+  margin-top: 20px;
+  padding: 12px;
+  width: 100%;
+  background-color: #083f79;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button.Consultar:hover {
+  background-color: #0056b3;
+}
+
+thead th {
+  background-color: rgba(255, 255, 255, 0.15);
+  padding: 12px 15px;
+  text-align: left;
+  font-weight: bold;
+  border-bottom: 2px solid #56a3e2;
+}
+
+tbody td {
+  padding: 12px 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+
+
+a {
+  display: inline-block;
+  margin-top: 20px;
+  text-decoration: none;
+  background-color: #f0f0f0;
+  color: #1e3c72;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+a:hover {
+  background-color: #56a3e2;
+  transform: scale(1.05);
+  color: white;
+}

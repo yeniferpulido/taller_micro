@@ -73,6 +73,17 @@ class vehiculoController extends Controller
     return response()->json(['data' => $vehiculosestado], 200);
     }
 
+    public function showbyestadoalqui()
+    {
+    $vehiculosestado = Vehiculo::where('estado', 'alquilado')->get();
+
+    if ($vehiculosestado->isEmpty()) {
+        return response()->json(['data' => 'No hay vehículos alquilado'], 404);
+    }
+
+    return response()->json(['data' => $vehiculosestado], 200);
+    }
+
     
 
     /**

@@ -137,4 +137,26 @@ public function index()
 
     return response()->json(['data' => $vehiculos], 200);
 }
+
+public function alquiladosPorFecha(Request $request)
+{
+    $fecha = $request->query('fecha'); // Obtener la fecha desde la URL (?fecha=...)
+
+    if (!$fecha) {
+        return response()->json(['message' => 'Fecha requerida'], 400);
+    }
+
+    // Vehículos ya reservados ese día
+    $reservados = Reserva::whereDate('fecha_inicio', '<=', $fecha)
+        ->whereDate('fecha_fin', '>=', $fecha)
+        ->pluck('vehiculo_id');
+
+    // Filtrar los que están alquilados y están reservados en esa fecha
+    $vehiculos = Vehiculo::where('estado', 'alquilado')
+        ->whereIn('id', $reservados)
+        ->get();
+
+    return response()->json(['data' => $vehiculos], 200);
+}
+
 }

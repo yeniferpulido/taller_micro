@@ -2,51 +2,43 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Actualizar Cliente</title>
+  <title>Consultar Vehículos por Fecha</title>
+  <link rel="stylesheet" href="../csscarpeta/verReservas.css">
 </head>
 <body>
 
-    <h2>Consultar disponibilidad por fecha</h2>
+    <h1>Consultar alquiler por fecha</h1>
     <form id="formFecha">
-    <input type="date" name="fecha" required />
-    <button type="submit">Consultar</button>
-    </form>
-
-
-  <hr/>
-
- <div id="formActualizarContainer" style="display:none;">
-  <h2>Actualizar cliente</h2>
-  <form id="formClienteactu" name="actuclienteForm">
-
-    <div>
-      <label for="nombre">Nombre:</label>
-      <input type="text" id="nombre" name="nombre" required />
-    </div>
-
-    <div>
-      <label for="telefono">Teléfono:</label>
-      <input type="number" id="telefono" name="telefono" required />
-    </div>
-
-    <div>
-      <label for="correo">Correo:</label>
-      <input type="email" id="correo" name="correo" required />
-    </div>
-
-    <div>
-      <label for="numero_licencia">Número de licencia:</label>
-      <input type="text" id="numero_licencia" name="numero_licencia" required readonly />
-    </div>
-
-    <button type="submit">Actualizar</button>
+    <label for="fecha">Selecciona una fecha:</label>
+    <input type="date" id="fecha" name="fecha" required />
+    <button type="submit" class="Consultar">Consultar</button>
   </form>
-</div>
 
 
-  <br />
-  <a href="clienteMenu.html">Volver</a>
+  <br/>
 
-  <script src="../js/vervehiculo.js"></script>
+ 
+  <!-- Tabla para mostrar los vehículos disponibles -->
+  <table id="tablaVehiculos" hidden cellpadding="5" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Categoría</th>
+        <th>Marca</th>
+        <th>Modelo</th>
+        <th>Año</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody id="tbodyVehiculos">
+      <!-- Aquí se agregan las filas dinámicamente -->
+    </tbody>
+  </table>
+
+
+  <div>
+  <a href="ReservasMenu.html" class="volver">Volver</a>
+  </div>
+
+  <script src="../js/alquilados-.js"></script>
 </body>
 </html>

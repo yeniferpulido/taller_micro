@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <title>Actualizar Vehículo</title>
+    <link rel="stylesheet" href="../csscarpeta/actualizarVehiPlaca.css">
 </head>
 <body>
+<div class="container">
 
   <h1>Buscar vehículo por placa</h1>
 
@@ -13,13 +15,13 @@
       <label for="categoriaBuscar">Ingrese la placa del vehículo:</label>
       <input type="text" id="categoriaBuscar" name="categoria" required />
     </div>
-    <br />
-    <button type="submit">Buscar</button>
+      <br />
+    <button type="submit" class="Buscar">Buscar</button>
   </form>
 
   <hr />
 
-  <div id="formActualizarContainer" style="display:none;">
+  <div id="formActualizarContainer">
     <h2>Actualizar vehículo</h2>
     <form id="formVehiculoactu" name="actuvehiculoForm">
 
@@ -47,20 +49,20 @@
       </select>
     </div>
 
-
-
       <div>
         <label for="categoria">Placa (Categoría):</label>
         <input type="text" id="categoria" name="categoria" readonly />
       </div>
-
-      <br />
-      <button type="submit">Actualizar</button>
+       <br />
+      <button type="submit" class="actualizar">Actualizar</button>
     </form>
   </div>
 
-  <br />
-  <a href="vehiculoMenu.html">Volver</a>
+    <div class="volver-container">
+  <a href="vehiculoMenu.html" class="volver">Volver</a>
+  </div>
+  
+    </div>
 
   <script src="../js/actualizarvehiculo.js"></script>
 </body>
