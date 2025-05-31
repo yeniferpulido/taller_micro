@@ -17,6 +17,12 @@ class reservaController extends Controller
 
 public function index()
 {
+     $rows = Reserva::all();
+        return response()
+        ->json(['data'=>$rows], 200);
+
+
+        
     $hoy = Carbon::now()->toDateString(); // Fecha actual
     $rows = Reserva::all(); // Traer todas las reservas
 
@@ -158,5 +164,41 @@ public function alquiladosPorFecha(Request $request)
 
     return response()->json(['data' => $vehiculos], 200);
 }
+
+public function consultarPorLicencia($numero_licencia)
+{
+    // Buscar cliente por número de licencia
+    $cliente = Cliente::where('numero_licencia', $numero_licencia)->first();
+
+    if (!$cliente) {
+        return response()->json(['mensaje' => 'Cliente no encontrado'], 404);
+    }
+
+    // Obtener reservas con datos del vehículo usando join
+    $reservas = Reserva::select('reservas.id', 'vehiculos.marca', 'vehiculos.modelo', 'reservas.fecha_inicio', 'reservas.fecha_fin', 'reservas.estado')
+        ->join('vehiculos', 'reservas.vehiculo_id', '=', 'vehiculos.id')
+        ->where('reservas.cliente_id', $cliente->id)
+        ->get();
+
+    if ($reservas->isEmpty()) {
+        return response()->json(['mensaje' => 'No hay reservas para este cliente'], 200);
+    }
+
+    // Mapear la respuesta para mostrar los datos del vehículo concatenados
+    $respuesta = $reservas->map(function ($reserva) {
+        return [
+            'id' => $reserva->id,
+            'vehiculo' => $reserva->marca . ' ' . $reserva->modelo,
+            'fecha_inicio' => $reserva->fecha_inicio,
+            'fecha_fin' => $reserva->fecha_fin,
+            'estado' => $reserva->estado,
+        ];
+    });
+
+    return response()->json($respuesta);
+}
+
+
+
 
 }

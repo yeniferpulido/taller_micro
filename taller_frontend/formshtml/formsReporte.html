@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Consultar Reservas por Licencia</title>
+  <link rel="stylesheet" href="../csscarpeta/verReportes.css">
+</head>
+<body>
+
+  <h1>Consultar reservas por número de licencia</h1>
+
+  <form id="formLicencia">
+    <label for="numeroLicencia">Número de licencia:</label>
+    <input type="text" id="numeroLicencia" name="numeroLicencia" required />
+    <button type="submit" class="Consultar">Consultar</button>
+  </form>
+
+  <br>
+
+  <table id="tablaReservas" hidden cellpadding="5" cellspacing="0">
+    <thead>
+      <tr>
+        <th>ID Reserva</th>
+        <th>Vehículo</th>
+        <th>Fecha inicio</th>
+        <th>Fecha fin</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody id="tbodyReservas">
+    </tbody>
+  </table>
+
+  <div>
+    <a href="../index.html" class="volver">Volver</a>
+  </div>
+
+  <script src="../js/verReporte.js"></script>
+
+</body>
+</html>

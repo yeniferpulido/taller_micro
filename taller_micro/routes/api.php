@@ -3,6 +3,7 @@
 use App\Http\Controllers\vehiculoController;
 use App\Http\Controllers\reservaController;
 use App\Http\Controllers\clienteController;
+use App\Http\Controllers\ReservasController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,7 @@ Route::controller(reservaController::class)->group(function(){
     Route::get('reservas', 'index'); //obtiene los datos de la tabla reservass
     Route::get('/vehiculos/disponibles-por-fecha', 'disponiblesPorFecha'); 
     Route::get('/vehiculos/alquilados-por-fecha', 'alquiladosPorFecha'); 
+    Route::get('reservas/{numero_licencia}',  'consultarPorLicencia');
     Route::post('reservas', 'store'); //configurando la url 
     Route::get('reservas/{id}', 'show'); // obtener el los datos de la reservas a parrtir del id
     Route::put('reservas/{id}', 'update'); // buscar la parsona para modificar a partir del id
