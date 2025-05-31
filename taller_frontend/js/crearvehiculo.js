@@ -42,5 +42,3 @@ const fechaHoy = () => {
     return `${anio}-${mes}-${dia}`;
 }
 
-// localStorage.setItem('idReserva', 1);
-// const idReserva = localStorage.getItem('idReserva');

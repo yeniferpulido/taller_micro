@@ -62,8 +62,6 @@ public function index()
         $newReserva->fecha_inicio=$data['fecha_inicio'];
         $newReserva->fecha_fin=$data['fecha_fin'];
         $newReserva->estado=$data['estado'];
-        //$newReserva->created_at=$data['created_at'];
-        //$newReserva->updated_at=$data['updated_at'];
         $newReserva->save();    //guardar
 
         return response()->json(['data' => 'Datos guardados'], 201); // retorna un mesaje datos guardados
