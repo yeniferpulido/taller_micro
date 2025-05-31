@@ -12,7 +12,7 @@ Route::controller(vehiculoController::class)->group(function(){
     Route::post('vehiculos', 'store'); //crearvehiculo-configurando la url 
     Route::get('vehiculos/disponible', 'showbyestado'); //vervehiculosdisponibles-muestra los vehiculos disponibles
     Route::get('vehiculos/alquilado', 'showbyestadoalqui'); //vervehiculosdisponibles-muestra los vehiculos disponibles
-    //Route::get('vehiculos/{id}', 'show'); //mostrarvehiculoporid-obtener el los datos de la reservas a parrtir del id
+    Route::get('vehiculos/alqmant', 'showmantenimientoalqui'); 
     Route::put('vehiculos/{categoria}', 'update'); // actualizarvehiculoporplaca-buscar la parsona para modificar a partir del id
     Route::delete('vehiculos/{categoria}', 'destroy'); // borra datos, buscandolo con el id
 });
@@ -25,7 +25,7 @@ Route::controller(reservaController::class)->group(function(){
     Route::get('reservas/{numero_licencia}',  'consultarPorLicencia');
     Route::post('reservas', 'store'); //configurando la url 
     Route::get('reservas/{id}', 'show'); // obtener el los datos de la reservas a parrtir del id
-    Route::put('reservas/{id}', 'update'); // buscar la parsona para modificar a partir del id
+    Route::put('reservasactualizar', 'actualizarEstadosPorFecha'); // buscar la parsona para modificar a partir del id
     Route::delete('reservas/{id}', 'destroy'); // borra datos, buscandolo con el id
 });
 

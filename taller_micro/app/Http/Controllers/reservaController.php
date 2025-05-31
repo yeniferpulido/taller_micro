@@ -22,7 +22,7 @@ public function index()
         ->json(['data'=>$rows], 200);
 
 
-        
+
     $hoy = Carbon::now()->toDateString(); // Fecha actual
     $rows = Reserva::all(); // Traer todas las reservas
 
@@ -85,27 +85,26 @@ public function index()
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-         $row = Reserva::find($id); //busca el id que el usurio selecciona para consultarlo
-        if(empty($row)){
-            return response()->json(['data'=>'no existe'], 404);
+    public function actualizarEstadosPorFecha()
+{
+    $hoy = Carbon::now()->toDateString(); // Fecha actual
+    $rows = Reserva::all(); // Obtener todas las reservas
 
+    foreach ($rows as $row) {
+        if ($hoy == $row->fecha_inicio) {
+            $row->estado = 'activa';
+        } elseif ($hoy > $row->fecha_fin) {
+            $row->estado = 'finalizada';
+        } else {
+            $row->estado = 'pendiente';
         }
-        
-
-        $data = $request->all();
-        $row->cliente_id=$data['cliente_id'];
-        $row->vehiculo_id=$data['vehiculo_id'];
-        $row->fecha_inicio=$data['fecha_inicio'];
-        $row->fecha_fin=$data['fecha_fin'];
-        $row->estado=$data['estado'];
-        //$row->created_at=$data['created_at'];
-        //$row->updated_at=$data['updated_at'];
 
         $row->save();
-        return response()->json(['data' => 'Datos guardados'], 200);
     }
+
+    return response()->json(['mensaje' => 'Estados actualizados correctamente'], 200);
+}
+
     
 
     /**
@@ -184,7 +183,7 @@ public function consultarPorLicencia($numero_licencia)
         return response()->json(['mensaje' => 'No hay reservas para este cliente'], 200);
     }
 
-    // Mapear la respuesta para mostrar los datos del vehículo concatenados
+    
     $respuesta = $reservas->map(function ($reserva) {
         return [
             'id' => $reserva->id,

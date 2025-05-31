@@ -2,7 +2,7 @@ const tablaBody = document.getElementById("tablaVehiculosBody");
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    const res = await fetch("http://127.0.0.1:8000/api/vehiculos", {
+    const res = await fetch("http://127.0.0.1:8000/api/vehiculos/alqmant", {
       method: "GET",
       headers: { "Content-Type": "application/json" }
     });

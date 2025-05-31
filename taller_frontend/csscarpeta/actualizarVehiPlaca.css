@@ -1,4 +1,4 @@
-/* Fondo y centrado general */
+
 body {
 
   background: linear-gradient( #0f2027);
@@ -10,7 +10,7 @@ body {
   align-items: center;
 }
 
-/* Contenedor centrado */
+
 .container {
   background-color: rgba(255, 255, 255, 0.05);
   padding: 40px 30px;
@@ -20,14 +20,14 @@ body {
   max-width: 500px;
 }
 
-/* Títulos */
+
 h1, h2 {
   text-align: center;
   margin-bottom: 20px;
   color: #fff;
 }
 
-/* Campos */
+
 form div {
   margin-bottom: 15px;
   display: flex;
@@ -56,7 +56,7 @@ select:focus {
   border-color: #007bff;
 }
 
-/* Buscares */
+
 .Buscar {
   margin-top: 10px;
   padding: 12px;
@@ -92,7 +92,7 @@ select:focus {
 }
 
 
-/* Línea separadora */
+
 hr {
   margin: 30px 0;
   border: 0;
@@ -101,7 +101,7 @@ hr {
   opacity: 0.3;
 }
 
-/* Enlace volver */
+
 .volver-container {
   text-align: center;
   margin-top: 20px;
@@ -123,7 +123,7 @@ hr {
   transform: scale(1.05);
 }
 
-/* Ocultar inicialmente el segundo formulario */
+
 #formActualizarContainer {
   display: none;
 }

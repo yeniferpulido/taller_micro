@@ -28,10 +28,11 @@ class vehiculoController extends Controller
     $placanueva = true;
 
     foreach ($rows as $row) {
-        if ($row->categoria == $data['categoria']) {
-            $placanueva = false;
-            break; 
-        }
+        if (strtolower($row->categoria) == strtolower($data['categoria'])) {
+        $placanueva = false;
+    break;
+}
+
     }
 
     if ($placanueva) {
@@ -83,6 +84,18 @@ class vehiculoController extends Controller
 
     return response()->json(['data' => $vehiculosestado], 200);
     }
+
+    public function showmantenimientoalqui()
+    {
+    $vehiculosestado = Vehiculo::whereIn('estado', ['alquilado', 'mantenimiento'])->get();
+
+    if ($vehiculosestado->isEmpty()) {
+        return response()->json(['data' => 'No hay vehículos alquilados ni en mantenimiento'], 404);
+    }
+
+    return response()->json(['data' => $vehiculosestado], 200);
+}
+
 
     
 

@@ -55,8 +55,12 @@ input[type="date"] {
   transition: border-color 0.3s;
 }
 
-input:focus {
-  border-color: #00bfff;
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+select:focus {
+  border-color: #007bff;
   outline: none;
 }
 
