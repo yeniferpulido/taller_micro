@@ -19,15 +19,18 @@ Route::controller(vehiculoController::class)->group(function(){
 
 
 Route::controller(reservaController::class)->group(function(){
-    Route::get('reservas', 'index'); //obtiene los datos de la tabla reservass
+    Route::get('reservas', 'index'); 
     Route::get('/vehiculos/disponibles-por-fecha', 'disponiblesPorFecha'); 
     Route::get('/vehiculos/alquilados-por-fecha', 'alquiladosPorFecha'); 
     Route::get('reservas/{numero_licencia}',  'consultarPorLicencia');
-    Route::post('reservas', 'store'); //configurando la url 
-    Route::get('reservas/{id}', 'show'); // obtener el los datos de la reservas a parrtir del id
-    Route::put('reservasactualizar', 'actualizarEstadosPorFecha'); // buscar la parsona para modificar a partir del id
-    Route::delete('reservas/{id}', 'destroy'); // borra datos, buscandolo con el id
+    Route::get('reservas/activas/{numero_licencia}', 'consultarReservasActivasPorLicencia');  
+    Route::post('reservas', 'store'); 
+    Route::get('reservas/{id}', 'show'); 
+    Route::put('/reservas/actualizar-estados', 'actualizarEstadosPorFecha'); 
+    Route::put('reservas/{id}/cancelar', 'cancelarReserva');
 });
+
+
 
 Route::controller(clienteController::class)->group(function(){
     Route::get('clientes', 'index'); //obtiene los datos de la tabla clientes

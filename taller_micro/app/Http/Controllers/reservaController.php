@@ -94,9 +94,9 @@ public function index()
         if ($hoy == $row->fecha_inicio) {
             $row->estado = 'activa';
         } elseif ($hoy > $row->fecha_fin) {
-            $row->estado = 'finalizada';
+            $row->estado = 'completada';
         } else {
-            $row->estado = 'pendiente';
+            $row->estado = 'cancelada';
         }
 
         $row->save();
@@ -105,21 +105,36 @@ public function index()
     return response()->json(['mensaje' => 'Estados actualizados correctamente'], 200);
 }
 
+
     
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-         $row = Reserva::find($id); //busca el id que el usurio selecciona para consultarlo
-            if(empty($row)){
-                return response()->json(['data'=>'no existe'], 404);
-    
-            }
-            $row->delete();
-            return response()->json(['data' => 'Datos eliminados'], 200);
+public function cancelarReserva($id)
+{
+    $reserva = Reserva::find($id);
+    if (!$reserva) {
+        return response()->json(['mensaje' => 'Reserva no encontrada'], 404);
     }
+
+    if ($reserva->estado !== 'activa') {
+        return response()->json(['mensaje' => 'Solo se pueden cancelar reservas activas'], 400);
+    }
+
+    // Cambiar estado de la reserva
+    $reserva->estado = 'cancelada';
+    $reserva->save();
+
+    // Cambiar estado del vehículo asociado a 'disponible'
+    $vehiculo = Vehiculo::find($reserva->vehiculo_id);
+    if ($vehiculo) {
+        $vehiculo->estado = 'disponible';
+        $vehiculo->save();
+    }
+
+    return response()->json(['mensaje' => 'Reserva cancelada correctamente y vehículo disponible'], 200);
+}
 
 
     public function disponiblesPorFecha(Request $request)
@@ -196,6 +211,38 @@ public function consultarPorLicencia($numero_licencia)
 
     return response()->json($respuesta);
 }
+
+public function consultarReservasActivasPorLicencia($numero_licencia)
+{
+    $cliente = Cliente::where('numero_licencia', $numero_licencia)->first();
+
+    if (!$cliente) {
+        return response()->json(['mensaje' => 'Cliente no encontrado'], 404);
+    }
+
+    $reservas = Reserva::select('reservas.id', 'vehiculos.marca', 'vehiculos.modelo', 'reservas.fecha_inicio', 'reservas.fecha_fin', 'reservas.estado')
+        ->join('vehiculos', 'reservas.vehiculo_id', '=', 'vehiculos.id')
+        ->where('reservas.cliente_id', $cliente->id)
+        ->where('reservas.estado', 'activa')  
+        ->get();
+
+    if ($reservas->isEmpty()) {
+        return response()->json([]);
+    }
+
+    $respuesta = $reservas->map(function ($reserva) {
+        return [
+            'id' => $reserva->id,
+            'vehiculo' => $reserva->marca . ' ' . $reserva->modelo,
+            'fecha_inicio' => $reserva->fecha_inicio,
+            'fecha_fin' => $reserva->fecha_fin,
+            'estado' => $reserva->estado,
+        ];
+    });
+
+    return response()->json($respuesta);
+}
+
 
 
 

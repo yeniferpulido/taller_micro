@@ -57,7 +57,9 @@ async function actualizarEstado(placa) {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ estado: nuevoEstado })
-    });
+    }
+    
+  );
 
     const result = await res.json();
 
@@ -71,3 +73,4 @@ async function actualizarEstado(placa) {
     alert("No se pudo actualizar el estado.");
   }
 }
+

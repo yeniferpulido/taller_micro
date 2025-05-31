@@ -15,6 +15,12 @@ document.getElementById('formLicencia').addEventListener('submit', async functio
   }
 
   try {
+    //  1. Actualizar estados de las reservas automáticamente
+    await fetch('http://127.0.0.1:8000/api/reservas/actualizar-estados', {
+      method: 'PUT'
+    });
+
+    //  2. Luego hacer la consulta por número de licencia
     const res = await fetch(`http://127.0.0.1:8000/api/reservas/${numeroLicencia}`);
 
     if (!res.ok) {
